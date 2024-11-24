@@ -171,6 +171,9 @@ catalogs:
     consola:
       specifier: ^3.2.3
       version: 3.2.3
+    country-state-city:
+      specifier: ^3.1.0
+      version: 3.2.1
     cross-env:
       specifier: ^7.0.3
       version: 7.0.3
@@ -462,6 +465,9 @@ catalogs:
     vue-router:
       specifier: ^4.4.5
       version: 4.4.5
+    vue-tel-input:
+      specifier: ^9.2.0
+      version: 9.2.0
     vue-tsc:
       specifier: ^2.1.10
       version: 2.1.10
@@ -743,6 +749,12 @@ importers:
 
   apps/web-naive:
     dependencies:
+      '@vben-core/icons':
+        specifier: workspace:*
+        version: link:../../packages/@core/base/icons
+      '@vben-core/shadcn-ui':
+        specifier: workspace:*
+        version: link:../../packages/@core/ui-kit/shadcn-ui
       '@vben/access':
         specifier: workspace:*
         version: link:../../packages/effects/access
@@ -788,6 +800,9 @@ importers:
       '@vueuse/core':
         specifier: 'catalog:'
         version: 11.3.0(vue@3.5.13(typescript@5.7.2))
+      country-state-city:
+        specifier: 'catalog:'
+        version: 3.2.1
       naive-ui:
         specifier: 'catalog:'
         version: 2.40.1(vue@3.5.13(typescript@5.7.2))
@@ -800,6 +815,9 @@ importers:
       vue-router:
         specifier: 'catalog:'
         version: 4.4.5(vue@3.5.13(typescript@5.7.2))
+      vue-tel-input:
+        specifier: 'catalog:'
+        version: 9.2.0(typescript@5.7.2)
 
   docs:
     dependencies:
@@ -5348,6 +5366,9 @@ packages:
       typescript:
         optional: true
 
+  country-state-city@3.2.1:
+    resolution: {integrity: sha512-kxbanqMc6izjhc/EHkGPCTabSPZ2G6eG4/97akAYHJUN4stzzFEvQPZoF8oXDQ+10gM/O/yUmISCR1ZVxyb6EA==}
+
   crc-32@1.2.2:
     resolution: {integrity: sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ==}
     engines: {node: '>=0.8'}
@@ -7193,6 +7214,9 @@ packages:
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
+
+  libphonenumber-js@1.11.15:
+    resolution: {integrity: sha512-M7+rtYi9l5RvMmHyjyoF3BHHUpXTYdJ0PezZGHNs0GyW1lO+K7jxlXpbdIb7a56h0nqLYdjIw+E+z0ciGaJP7g==}
 
   lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
@@ -9931,6 +9955,9 @@ packages:
     resolution: {integrity: sha512-4fKZygS8cH1yCyuabAXGUAsyi1b2/o/OKgu/RUb+znIYOxPRxdkytJEx+0wGcpBE1pX6vUgh5jwWOKRGvuA/7Q==}
     peerDependencies:
       vue: ^3.5.13
+
+  vue-tel-input@9.2.0:
+    resolution: {integrity: sha512-PK4joTdbYxlA1m5y6iANz//2+lso5FedDAovqvxAdIYabH6EipTsqPXdwaiPJwWWn0FCH7n5YD5dzm88Dytb/A==}
 
   vue-tsc@2.1.10:
     resolution: {integrity: sha512-RBNSfaaRHcN5uqVqJSZh++Gy/YUzryuv9u1aFWhsammDJXNtUiJMNoJ747lZcQ68wUQFx6E73y4FY3D8E7FGMA==}
@@ -14318,6 +14345,8 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.2
 
+  country-state-city@3.2.1: {}
+
   crc-32@1.2.2: {}
 
   crc32-stream@6.0.0:
@@ -16340,6 +16369,8 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+
+  libphonenumber-js@1.11.15: {}
 
   lilconfig@2.1.0: {}
 
@@ -19386,6 +19417,13 @@ snapshots:
     dependencies:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.13(typescript@5.7.2)
+
+  vue-tel-input@9.2.0(typescript@5.7.2):
+    dependencies:
+      libphonenumber-js: 1.11.15
+      vue: 3.5.13(typescript@5.7.2)
+    transitivePeerDependencies:
+      - typescript
 
   vue-tsc@2.1.10(typescript@5.6.3):
     dependencies:

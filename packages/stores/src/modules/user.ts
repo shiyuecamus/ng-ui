@@ -1,23 +1,51 @@
 import { acceptHMRUpdate, defineStore } from 'pinia';
 
+interface SimpleRole {
+  /**
+   * 编码
+   */
+  code: string;
+  /**
+   * id
+   */
+  id: number | string;
+  /**
+   * 名称
+   */
+  name: string;
+}
+
 interface BasicUserInfo {
   [key: string]: any;
+
+  /**
+   * 部门id
+   */
+  deptId?: number | string;
   /**
    * 头像
    */
-  avatar: string;
-  /**
-   * 用户昵称
-   */
-  realName: string;
-  /**
-   * 用户角色
-   */
-  roles?: string[];
+  headerImg: string;
   /**
    * 用户id
    */
-  userId: string;
+  id: number | string;
+  /**
+   * 用户昵称
+   */
+  nickName: string;
+  /**
+   * 用户角色
+   */
+  roles?: SimpleRole[];
+  /**
+   * 状态
+   */
+  status?: number;
+  /**
+   * 租户id
+   */
+  tenantId?: number | string;
   /**
    * 用户名
    */
@@ -44,7 +72,7 @@ export const useUserStore = defineStore('core-user', {
       // 设置用户信息
       this.userInfo = userInfo;
       // 设置角色信息
-      const roles = userInfo?.roles ?? [];
+      const roles = (userInfo?.roles ?? []).map((role) => role.code);
       this.setUserRoles(roles);
     },
     setUserRoles(roles: string[]) {

@@ -1,0 +1,5 @@
+﻿{
+  "invalidDomainOrAddress": "Please enter a valid domain or IP address",
+  "cannotBeEmpty": "Cannot be empty",
+  "cannotBeEmptyWithName": "{name} Cannot be empty"
+}

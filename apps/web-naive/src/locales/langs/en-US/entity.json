@@ -1,0 +1,16 @@
+{
+  "tenant": "Tenant",
+  "tenantPackage": "Tenant Package",
+  "user": "User",
+  "role": "Role",
+  "dept": "Dept",
+  "menu": "Menu",
+  "oauth2Client": "Oauth2 Client",
+  "device": "Device",
+  "deviceCredentials": "Device Credentials",
+  "manufacturer": "Manufacturer",
+  "product": "Product",
+  "operationRecord": "Operation Record",
+  "dictionary": "Dictionary",
+  "dictionaryDetail": "Dictionary Detail"
+}

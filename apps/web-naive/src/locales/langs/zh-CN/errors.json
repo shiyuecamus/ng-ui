@@ -1,0 +1,5 @@
+﻿{
+  "invalidDomainOrAddress": "请输入合法的域名或地址",
+  "cannotBeEmpty": "不能为空",
+  "cannotBeEmptyWithName": "{name}不能为空"
+}

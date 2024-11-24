@@ -15,9 +15,13 @@ import { useAccessStore } from '@vben/stores';
 import { message } from '#/adapter/naive';
 import { useAuthStore } from '#/store';
 
-import { refreshTokenApi } from './core';
+import { tokenApi } from './core';
 
 const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
+const { clientId, clientSecret } = useAppConfig(
+  import.meta.env,
+  import.meta.env.PROD,
+);
 
 function createRequestClient(baseURL: string) {
   const client = new RequestClient({
@@ -47,9 +51,16 @@ function createRequestClient(baseURL: string) {
    */
   async function doRefreshToken() {
     const accessStore = useAccessStore();
-    const resp = await refreshTokenApi();
-    const newToken = resp.data;
+    const resp = await tokenApi({
+      refresh_token: accessStore.refreshToken || '',
+      client_id: clientId,
+      client_secret: clientSecret,
+      grant_type: 'refresh_token',
+    });
+    const newToken = resp.access_token;
+    const newRefreshToken = resp.refresh_token;
     accessStore.setAccessToken(newToken);
+    accessStore.setRefreshToken(newRefreshToken);
     return newToken;
   }
 
@@ -72,12 +83,11 @@ function createRequestClient(baseURL: string) {
   client.addResponseInterceptor<HttpResponse>({
     fulfilled: (response) => {
       const { data: responseData, status } = response;
-
-      const { code, data } = responseData;
+      const { code, data, msg } = responseData;
       if (status >= 200 && status < 400 && code === 0) {
         return data;
       }
-      throw Object.assign({}, response, { response });
+      throw new Error(msg);
     },
   });
 

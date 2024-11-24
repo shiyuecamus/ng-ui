@@ -1,36 +1,29 @@
-import { baseRequestClient, requestClient } from '#/api/request';
+import { requestClient } from '#/api/request';
 
 export namespace AuthApi {
   /** 登录接口参数 */
-  export interface LoginParams {
+  export interface TokenParams {
     password?: string;
     username?: string;
+    client_id?: string;
+    client_secret?: string;
+    grant_type?: string;
+    refresh_token?: string;
   }
 
   /** 登录接口返回值 */
-  export interface LoginResult {
-    accessToken: string;
-  }
-
-  export interface RefreshTokenResult {
-    data: string;
-    status: number;
+  export interface TokenResult {
+    access_token: string;
+    refresh_token: string;
   }
 }
 
 /**
- * 登录
+ * oauth2登录及刷新token
  */
-export async function loginApi(data: AuthApi.LoginParams) {
-  return requestClient.post<AuthApi.LoginResult>('/auth/login', data);
-}
-
-/**
- * 刷新accessToken
- */
-export async function refreshTokenApi() {
-  return baseRequestClient.post<AuthApi.RefreshTokenResult>('/auth/refresh', {
-    withCredentials: true,
+export async function tokenApi(params: AuthApi.TokenParams) {
+  return requestClient.post<AuthApi.TokenResult>('/auth/token', undefined, {
+    params,
   });
 }
 
@@ -38,9 +31,7 @@ export async function refreshTokenApi() {
  * 退出登录
  */
 export async function logoutApi() {
-  return baseRequestClient.post('/auth/logout', {
-    withCredentials: true,
-  });
+  return requestClient.post('/auth/logout');
 }
 
 /**

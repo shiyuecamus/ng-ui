@@ -9,5 +9,25 @@ export const overridesPreferences = defineOverridesPreferences({
   // overrides
   app: {
     name: import.meta.env.VITE_APP_TITLE,
+    accessMode: 'backend',
+    enableRefreshToken: true,
+  },
+  copyright: {
+    companyName: 'Node Grove',
+    companySiteLink: 'https://www.vben.pro',
+    date: '2024',
+    enable: true,
+    icp: '',
+    icpLink: '',
+    settingShow: true,
+  },
+  logo: {
+    enable: true,
+    source: '/static/logo.jpg',
+  },
+  theme: {
+    builtinType: 'orange',
+    mode: 'light',
+    radius: '0.5',
   },
 });

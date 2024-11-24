@@ -10,5 +10,55 @@
     "title": "Dashboard",
     "analytics": "Analytics",
     "workspace": "Workspace"
+  },
+  "home": {
+    "title": "Home"
+  },
+  "system": {
+    "title": "System",
+    "user": {
+      "title": "User"
+    },
+    "role": {
+      "title": "Role"
+    },
+    "menu": {
+      "title": "Menu"
+    },
+    "dept": {
+      "title": "Dept"
+    },
+    "tenant": {
+      "title": "Tenant",
+      "name": "Name",
+      "status": "Status",
+      "domain": "Domain",
+      "startTime": "Start Time",
+      "endTime": "End Time"
+    },
+    "tenantPackage": {
+      "title": "Tenant Package"
+    },
+    "dictionary": {
+      "title": "Dictionary"
+    }
+  },
+  "product": {
+    "title": "Product"
+  },
+  "entity": {
+    "title": "Entity",
+    "device": {
+      "title": "Device"
+    },
+    "asset": {
+      "title": "Asset"
+    }
+  },
+  "manufacturer": {
+    "title": "Manufacturer"
+  },
+  "operationRecord": {
+    "title": "Operation Record"
   }
 }
