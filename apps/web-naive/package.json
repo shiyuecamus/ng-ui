@@ -48,6 +48,6 @@
     "vue": "catalog:",
     "vue-router": "catalog:",
     "country-state-city": "catalog:",
-    "vue-tel-input": "catalog:"
+    "intl-tel-input": "catalog:"
   }
 }

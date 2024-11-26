@@ -61,7 +61,7 @@ const formOptions: VbenFormProps = {
             value: CommonStatus.DISABLED,
           },
         ],
-        placeholder: $t('common.placeholder.select'),
+        placeholder: $t('ui.placeholder.select'),
       },
       fieldName: 'status',
       label: $t('page.system.tenant.status'),
@@ -98,9 +98,9 @@ const gridOptions: VxeGridProps<RowType> = {
   },
   columns: [
     { field: 'name', title: $t('common.baseInfo.name') },
-    { field: 'contactInfo.country', title: $t('common.contactInfo.country') },
-    { field: 'contactInfo.state', title: $t('common.contactInfo.state') },
-    { field: 'contactInfo.city', title: $t('common.contactInfo.city') },
+    { field: 'country', title: $t('common.contactInfo.country') },
+    { field: 'state', title: $t('common.contactInfo.state') },
+    { field: 'city', title: $t('common.contactInfo.city') },
     {
       field: 'createdAt',
       formatter: 'formatDateTime',
@@ -144,6 +144,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
 
 const [Modal, modalApi] = useVbenModal({
   fullscreenButton: false,
+  class: 'w-2/5',
   onCancel() {
     modalApi.close();
   },

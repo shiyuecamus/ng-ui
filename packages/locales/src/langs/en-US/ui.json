@@ -4,8 +4,10 @@
     "selectRequired": "Please select {0}"
   },
   "placeholder": {
-    "input": "Please enter",
-    "select": "Please select"
+    "select": "Please select",
+    "selectWithName": "Please select {name}",
+    "input": "Please input",
+    "inputWithName": "Please input {name}"
   },
   "captcha": {
     "title": "Please complete the security verification",

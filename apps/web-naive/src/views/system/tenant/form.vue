@@ -1,15 +1,18 @@
 <script lang="ts" setup>
-import { $t } from '@vben/locales';
+import { $t, useI18n } from '@vben/locales';
 
 import { NDynamicInput } from 'naive-ui';
 
 import { useVbenForm, z } from '#/adapter/form';
+import { contactSchema } from '#/shared/schema/form';
 
 defineOptions({ name: 'TenantForm' });
 
 const emit = defineEmits<{
   submit: [Record<string, any>];
 }>();
+
+const { locale } = useI18n();
 
 // 初始化表单
 const [Form, formApi] = useVbenForm({
@@ -18,7 +21,7 @@ const [Form, formApi] = useVbenForm({
     {
       component: 'Input',
       componentProps: {
-        placeholder: $t('common.placeholder.inputWithName', {
+        placeholder: $t('ui.placeholder.inputWithName', {
           name: $t('page.system.tenant.name'),
         }),
       },
@@ -48,17 +51,10 @@ const [Form, formApi] = useVbenForm({
           }),
         }),
     },
-    {
-      component: 'Input',
-      defaultValue: {},
-      componentProps: {},
-      fieldName: 'contactInfo',
-      label: $t('page.system.tenant.name'),
-    },
+    ...contactSchema(locale.value),
   ],
   showDefaultActions: false,
 });
-
 // 导出 formApi
 defineExpose({
   formApi,

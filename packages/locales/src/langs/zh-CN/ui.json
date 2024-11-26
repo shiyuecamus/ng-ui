@@ -4,8 +4,10 @@
     "selectRequired": "请选择{0}"
   },
   "placeholder": {
+    "select": "请选择",
+    "selectWithName": "请选择{name}",
     "input": "请输入",
-    "select": "请选择"
+    "inputWithName": "请输入{name}"
   },
   "captcha": {
     "title": "请完成安全验证",

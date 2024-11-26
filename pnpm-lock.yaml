@@ -279,6 +279,9 @@ catalogs:
     husky:
       specifier: ^9.1.7
       version: 9.1.7
+    intl-tel-input:
+      specifier: ^24.7.0
+      version: 24.7.0
     is-ci:
       specifier: ^3.0.1
       version: 3.0.1
@@ -465,9 +468,6 @@ catalogs:
     vue-router:
       specifier: ^4.4.5
       version: 4.4.5
-    vue-tel-input:
-      specifier: ^9.2.0
-      version: 9.2.0
     vue-tsc:
       specifier: ^2.1.10
       version: 2.1.10
@@ -803,6 +803,9 @@ importers:
       country-state-city:
         specifier: 'catalog:'
         version: 3.2.1
+      intl-tel-input:
+        specifier: 'catalog:'
+        version: 24.7.0
       naive-ui:
         specifier: 'catalog:'
         version: 2.40.1(vue@3.5.13(typescript@5.7.2))
@@ -815,9 +818,6 @@ importers:
       vue-router:
         specifier: 'catalog:'
         version: 4.4.5(vue@3.5.13(typescript@5.7.2))
-      vue-tel-input:
-        specifier: 'catalog:'
-        version: 9.2.0(typescript@5.7.2)
 
   docs:
     dependencies:
@@ -6777,6 +6777,9 @@ packages:
     resolution: {integrity: sha512-NGnrKwXzSms2qUUih/ILZ5JBqNTSa1+ZmP6flaIp6KmSElgE9qdndzS3cqjrDovwFdmwsGsLdeFgB6suw+1e9g==}
     engines: {node: '>= 0.4'}
 
+  intl-tel-input@24.7.0:
+    resolution: {integrity: sha512-OjkhKen4SJUI2kN9OHpb8ReNN619sB9gECPq51dn3zKEWvif3mnSjmrtWhm8ABIb7Ijs+AAYSS5sI33Sb4YqvQ==}
+
   ioredis@5.4.1:
     resolution: {integrity: sha512-2YZsvl7jopIa1gaePkeMtd9rAcSjOOjPtpcLlOeusyO+XH2SK5ZcT+UCrElPP+WVIInh2TzeI4XW9ENaSLVVHA==}
     engines: {node: '>=12.22.0'}
@@ -7214,9 +7217,6 @@ packages:
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
-
-  libphonenumber-js@1.11.15:
-    resolution: {integrity: sha512-M7+rtYi9l5RvMmHyjyoF3BHHUpXTYdJ0PezZGHNs0GyW1lO+K7jxlXpbdIb7a56h0nqLYdjIw+E+z0ciGaJP7g==}
 
   lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
@@ -9955,9 +9955,6 @@ packages:
     resolution: {integrity: sha512-4fKZygS8cH1yCyuabAXGUAsyi1b2/o/OKgu/RUb+znIYOxPRxdkytJEx+0wGcpBE1pX6vUgh5jwWOKRGvuA/7Q==}
     peerDependencies:
       vue: ^3.5.13
-
-  vue-tel-input@9.2.0:
-    resolution: {integrity: sha512-PK4joTdbYxlA1m5y6iANz//2+lso5FedDAovqvxAdIYabH6EipTsqPXdwaiPJwWWn0FCH7n5YD5dzm88Dytb/A==}
 
   vue-tsc@2.1.10:
     resolution: {integrity: sha512-RBNSfaaRHcN5uqVqJSZh++Gy/YUzryuv9u1aFWhsammDJXNtUiJMNoJ747lZcQ68wUQFx6E73y4FY3D8E7FGMA==}
@@ -15988,6 +15985,8 @@ snapshots:
       hasown: 2.0.2
       side-channel: 1.0.6
 
+  intl-tel-input@24.7.0: {}
+
   ioredis@5.4.1:
     dependencies:
       '@ioredis/commands': 1.2.0
@@ -16369,8 +16368,6 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
-
-  libphonenumber-js@1.11.15: {}
 
   lilconfig@2.1.0: {}
 
@@ -19417,13 +19414,6 @@ snapshots:
     dependencies:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.13(typescript@5.7.2)
-
-  vue-tel-input@9.2.0(typescript@5.7.2):
-    dependencies:
-      libphonenumber-js: 1.11.15
-      vue: 3.5.13(typescript@5.7.2)
-    transitivePeerDependencies:
-      - typescript
 
   vue-tsc@2.1.10(typescript@5.6.3):
     dependencies:

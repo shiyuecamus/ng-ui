@@ -11,8 +11,10 @@ import { h } from 'vue';
 import { globalShareState } from '@vben/common-ui';
 import { $t } from '@vben/locales';
 
+import IntlTelInput from 'intl-tel-input/vueWithUtils';
 import {
   NButton,
+  NCascader,
   NCheckbox,
   NCheckboxGroup,
   NDatePicker,
@@ -30,6 +32,8 @@ import {
 
 import { message } from '#/adapter/naive';
 
+import 'intl-tel-input/styles';
+
 const withDefaultPlaceholder = <T extends Component>(
   component: T,
   type: 'input' | 'select',
@@ -42,12 +46,14 @@ const withDefaultPlaceholder = <T extends Component>(
 
 // 这里需要自行根据业务组件库进行适配，需要用到的组件都需要在这里类型说明
 export type ComponentType =
+  | 'Cascader'
   | 'Checkbox'
   | 'CheckboxGroup'
   | 'DatePicker'
   | 'Divider'
   | 'Input'
   | 'InputNumber'
+  | 'InputTel'
   | 'RadioGroup'
   | 'Select'
   | 'Space'
@@ -84,6 +90,8 @@ async function initComponentAdapter() {
     TimePicker: NTimePicker,
     TreeSelect: withDefaultPlaceholder(NTreeSelect, 'select'),
     Upload: NUpload,
+    Cascader: withDefaultPlaceholder(NCascader, 'select'),
+    InputTel: withDefaultPlaceholder(IntlTelInput, 'select'),
   };
 
   // 将组件注册到全局共享状态中

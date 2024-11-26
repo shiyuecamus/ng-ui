@@ -1,0 +1,58 @@
+:root {
+  /* --iti-hover-color: hsl(var(--primary-foreground)); */
+
+  /* 调整 intl-tel-input 样式使其与 naive-ui 保持一致 */
+  .iti {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* 确保内容垂直居中 */
+    width: 100%;
+  }
+
+  .iti__search-input {
+    width: 100%;
+    height: 34px;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+  }
+
+  .iti__search-input:focus {
+    border: 1px solid hsl(var(--primary));
+    outline: none;
+  }
+
+  .iti__dropdown-content {
+    border-radius: var(--radius);
+  }
+
+  .iti__selected-country {
+    height: 100%; /* 确保 flag 按钮的高度与输入框一致 */
+    padding: 0;
+    margin-right: 10px; /* 调整 flag 按钮和输入框的间距 */
+  }
+
+  .iti__country-list {
+    max-height: 300px;
+  }
+
+  .iti__country-container {
+    width: auto !important;
+    margin-right: 8px; /* 调整国旗与输入框的间距 */
+  }
+
+  .iti input.iti__tel-input,
+  .iti input.iti__tel-input[type='text'],
+  .iti input.iti__tel-input[type='tel'] {
+    width: 100%;
+    height: 34px; /* 调整输入框的高度，使其与 naive-ui 一致 */
+    padding: 8px 12px; /* 调整内边距，确保输入框的内容不与边框重叠 */
+    font-size: inherit; /* 设置字体大小与 Naive UI 输入框一致 */
+    border: 1px solid hsl(var(--border)); /* 设置边框颜色，与 naive-ui 一致 */
+    border-radius: var(--radius); /* 设置边框圆角 */
+  }
+
+  .iti input.iti__tel-input:focus {
+    border: 1px solid hsl(var(--primary)); /* 设置边框颜色，与 naive-ui 一致 */
+    outline: none;
+  }
+}

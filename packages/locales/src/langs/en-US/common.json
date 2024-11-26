@@ -29,12 +29,6 @@
   "search": "Search",
   "searchWithName": "Search {name}",
   "actions": "Actions",
-  "placeholder": {
-    "select": "Please select",
-    "selectWithName": "Please select {name}",
-    "input": "Please input",
-    "inputWithName": "Please input {name}"
-  },
   "status": {
     "enabled": "Enabled",
     "disabled": "Disabled"

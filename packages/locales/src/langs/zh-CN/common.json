@@ -29,12 +29,6 @@
   "search": "搜索",
   "searchWithName": "搜索{name}",
   "actions": "操作",
-  "placeholder": {
-    "select": "请选择",
-    "selectWithName": "请选择{name}",
-    "input": "请输入",
-    "inputWithName": "请输入{name}"
-  },
   "status": {
     "enabled": "启用",
     "disabled": "禁用"
