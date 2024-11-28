@@ -10,7 +10,7 @@ import { resetAllStores, useAccessStore, useUserStore } from '@vben/stores';
 import { defineStore } from 'pinia';
 
 import { notification } from '#/adapter/naive';
-import { getUserInfoApi, logoutApi, tokenApi } from '#/api';
+import { getUserInfoApi, logoutApi, loginApi } from '#/api';
 import { $t } from '#/locales';
 
 export const useAuthStore = defineStore('auth', () => {
@@ -40,7 +40,7 @@ export const useAuthStore = defineStore('auth', () => {
       loginLoading.value = true;
       const { username, password } = params;
 
-      const { access_token, refresh_token } = await tokenApi({
+      const { access_token, refresh_token } = await loginApi({
         username,
         password,
         client_id: clientId,

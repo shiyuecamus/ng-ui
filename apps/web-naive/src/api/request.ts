@@ -15,7 +15,7 @@ import { useAccessStore } from '@vben/stores';
 import { message } from '#/adapter/naive';
 import { useAuthStore } from '#/store';
 
-import { tokenApi } from './core';
+import { refreshTokenApi } from './system';
 
 const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
 const { clientId, clientSecret } = useAppConfig(
@@ -51,7 +51,7 @@ function createRequestClient(baseURL: string) {
    */
   async function doRefreshToken() {
     const accessStore = useAccessStore();
-    const resp = await tokenApi({
+    const resp = await refreshTokenApi({
       refresh_token: accessStore.refreshToken || '',
       client_id: clientId,
       client_secret: clientSecret,

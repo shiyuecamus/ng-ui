@@ -1,4 +1,5 @@
-import { requestClient } from '#/api/request';
+import { baseRequestClient, requestClient } from '#/api/request';
+import { useAccessStore } from '@vben/stores';
 
 export namespace AuthApi {
   /** 登录接口参数 */
@@ -19,10 +20,19 @@ export namespace AuthApi {
 }
 
 /**
- * oauth2登录及刷新token
+ * oauth2登录
  */
-export async function tokenApi(params: AuthApi.TokenParams) {
+export async function loginApi(params: AuthApi.TokenParams) {
   return requestClient.post<AuthApi.TokenResult>('/auth/token', undefined, {
+    params,
+  });
+}
+
+/**
+ * oauth2刷新token
+ */
+export async function refreshTokenApi(params: AuthApi.TokenParams) {
+  return baseRequestClient.post<AuthApi.TokenResult>('/auth/token', undefined, {
     params,
   });
 }
@@ -31,7 +41,18 @@ export async function tokenApi(params: AuthApi.TokenParams) {
  * 退出登录
  */
 export async function logoutApi() {
-  return requestClient.post('/auth/logout');
+  const accessStore = useAccessStore();
+  return baseRequestClient.post(
+    '/auth/logout',
+    {},
+    {
+      headers: {
+        Authorization: accessStore.accessToken
+          ? `Bearer ${accessStore.accessToken}`
+          : null,
+      },
+    },
+  );
 }
 
 /**

@@ -55,7 +55,7 @@ export const authenticateResponseInterceptor = ({
         client.refreshTokenQueue = [];
 
         return client.request(error.config.url, { ...error.config });
-      } catch (refreshError) {
+      } catch (refreshError: any) {
         // 如果刷新 token 失败，处理错误（如强制登出或跳转登录页面）
         client.refreshTokenQueue.forEach((callback) => callback(''));
         client.refreshTokenQueue = [];

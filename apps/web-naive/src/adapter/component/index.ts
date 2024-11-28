@@ -11,7 +11,10 @@ import { h } from 'vue';
 import { globalShareState } from '@vben/common-ui';
 import { $t } from '@vben/locales';
 
-import IntlTelInput from 'intl-tel-input/vueWithUtils';
+// @ts-ignore
+import { VueTelInput } from 'vue-tel-input';
+import 'vue-tel-input/vue-tel-input.css';
+
 import {
   NButton,
   NCascader,
@@ -28,6 +31,7 @@ import {
   NTimePicker,
   NTreeSelect,
   NUpload,
+  NDynamicInput,
 } from 'naive-ui';
 
 import { message } from '#/adapter/naive';
@@ -53,6 +57,7 @@ export type ComponentType =
   | 'Divider'
   | 'Input'
   | 'InputNumber'
+  | 'DynamicInput'
   | 'InputTel'
   | 'RadioGroup'
   | 'Select'
@@ -91,7 +96,8 @@ async function initComponentAdapter() {
     TreeSelect: withDefaultPlaceholder(NTreeSelect, 'select'),
     Upload: NUpload,
     Cascader: withDefaultPlaceholder(NCascader, 'select'),
-    InputTel: withDefaultPlaceholder(IntlTelInput, 'select'),
+    InputTel: withDefaultPlaceholder(VueTelInput, 'input'),
+    DynamicInput: withDefaultPlaceholder(NDynamicInput, 'input'),
   };
 
   // 将组件注册到全局共享状态中

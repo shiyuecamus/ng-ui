@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import { $t, useI18n } from '@vben/locales';
-
-import { NDynamicInput } from 'naive-ui';
+import { $t } from '@vben/locales';
 
 import { useVbenForm, z } from '#/adapter/form';
 import { contactSchema } from '#/shared/schema/form';
+import { useVbenModal } from '@vben/common-ui';
+import { nextTick, ref } from 'vue';
+import { FormOpenType } from '@vben/constants';
 
 defineOptions({ name: 'TenantForm' });
 
@@ -12,7 +13,7 @@ const emit = defineEmits<{
   submit: [Record<string, any>];
 }>();
 
-const { locale } = useI18n();
+const type = ref(FormOpenType.CREATE);
 
 // 初始化表单
 const [Form, formApi] = useVbenForm({
@@ -30,7 +31,7 @@ const [Form, formApi] = useVbenForm({
       rules: 'required',
     },
     {
-      component: 'Input',
+      component: 'DynamicInput',
       fieldName: 'domain',
       label: $t('page.system.tenant.domain'),
       componentProps: {
@@ -51,22 +52,39 @@ const [Form, formApi] = useVbenForm({
           }),
         }),
     },
-    ...contactSchema(locale.value),
+    ...contactSchema,
   ],
   showDefaultActions: false,
 });
-// 导出 formApi
-defineExpose({
-  formApi,
+
+const [Modal, modalApi] = useVbenModal({
+  fullscreenButton: false,
+  class: 'w-2/5',
+  onCancel() {
+    modalApi.close();
+  },
+  onConfirm: async () => {
+    await formApi.validateAndSubmitForm();
+    // modalApi.close();
+  },
+  onOpenChange(isOpen: boolean) {
+    nextTick(() => {
+      if (isOpen) {
+        const { type: t, data } = modalApi.getData<Record<string, any>>();
+        type.value = t;
+        if (t === FormOpenType.EDIT && data) {
+          formApi.setValues(data);
+        }
+      }
+    });
+  },
 });
 </script>
 
 <template>
-  <Form>
-    <template #domain="slotProps">
-      <NDynamicInput v-bind="slotProps" />
-    </template>
-  </Form>
+  <Modal>
+    <Form />
+  </Modal>
 </template>
 
 <style scoped></style>

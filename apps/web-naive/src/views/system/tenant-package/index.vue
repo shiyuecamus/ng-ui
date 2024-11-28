@@ -1,21 +1,28 @@
-<script lang="ts" setup>
+﻿<script lang="ts" setup>
 import type { VxeGridProps } from '#/adapter/vxe-table';
-import { useVbenVxeGrid } from '#/adapter/vxe-table';
-import { FormOpenType } from '@vben/constants';
-import { Page, useVbenModal, type VbenFormProps } from '@vben/common-ui';
+
+import { nextTick, ref } from 'vue';
+
+import {
+  type ExtendedFormApi,
+  Page,
+  useVbenModal,
+  type VbenFormProps,
+} from '@vben/common-ui';
 import { useMessageHandler } from '@vben/hooks';
 import { $t } from '@vben/locales';
 import { CommonStatus, EntityType } from '@vben/types';
 import { VbenIcon } from '@vben-core/shadcn-ui';
 
 import { NButton, NPopconfirm, useMessage } from 'naive-ui';
-import { deleteTenant, fetchTenantPage } from '#/api/system';
 
-import TenantForm from './form.vue';
+import { useVbenVxeGrid } from '#/adapter/vxe-table';
+import { deleteTenant, fetchTenantPage } from '#/api/system/tenant';
 
 const { handleRequest } = useMessageHandler();
 
 const message = useMessage();
+const formRef = ref<{ formApi: ExtendedFormApi }>();
 
 interface RowType {
   id: number | string;
@@ -133,21 +140,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
   gridOptions,
 });
 
-const [Modal, modalApi] = useVbenModal({
-  connectedComponent: TenantForm,
-});
-
-const handleCreate = () => {
-  modalApi.setData({
-    type: FormOpenType.CREATE,
-  });
-  modalApi.setState({
-    title: $t('common.createWithName', {
-      name: $t('page.system.tenant.title'),
-    }),
-  });
-  modalApi.open();
-};
+const [Modal, modalApi] = useVbenModal({});
 
 const handleDelete = async (row: RowType) => {
   await handleRequest(
@@ -163,13 +156,18 @@ const handleDelete = async (row: RowType) => {
   );
   await gridApi.query();
 };
+
+const handleSubmit = (record: Record<string, any>) => {
+  // eslint-disable-next-line no-console
+  console.log(record);
+};
 </script>
 
 <template>
   <Page auto-content-height>
     <Grid>
       <template #toolbar-tools>
-        <NButton class="mr-2" type="primary" @click="handleCreate">
+        <NButton class="mr-2" type="primary" @click="() => modalApi.open()">
           <span>{{
             `${$t('common.createWithName', { name: $t('page.system.tenant.title') })}`
           }}</span>
@@ -193,6 +191,8 @@ const handleDelete = async (row: RowType) => {
         </NPopconfirm>
       </template>
     </Grid>
-    <Modal />
+    <Modal>
+      <TenantForm ref="formRef" @submit="handleSubmit" />
+    </Modal>
   </Page>
 </template>

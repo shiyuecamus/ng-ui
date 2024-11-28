@@ -26,10 +26,10 @@
     "#/*": "./src/*"
   },
   "dependencies": {
-    "@vben/access": "workspace:*",
-    "@vben/common-ui": "workspace:*",
     "@vben-core/icons": "workspace:*",
     "@vben-core/shadcn-ui": "workspace:*",
+    "@vben/access": "workspace:*",
+    "@vben/common-ui": "workspace:*",
     "@vben/constants": "workspace:*",
     "@vben/hooks": "workspace:*",
     "@vben/icons": "workspace:*",
@@ -43,11 +43,15 @@
     "@vben/types": "workspace:*",
     "@vben/utils": "workspace:*",
     "@vueuse/core": "catalog:",
+    "country-state-city": "catalog:",
+    "intl-tel-input": "catalog:",
     "naive-ui": "catalog:",
     "pinia": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:",
-    "country-state-city": "catalog:",
-    "intl-tel-input": "catalog:"
+    "vue-tel-input": "catalog:"
+  },
+  "devDependencies": {
+    "@types/vue-tel-input": "catalog:"
   }
 }
