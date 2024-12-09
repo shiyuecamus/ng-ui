@@ -48,6 +48,7 @@ const withDefaultPlaceholder = <T extends Component>(
 // 这里需要自行根据业务组件库进行适配，需要用到的组件都需要在这里类型说明
 export type ComponentType =
   | 'ApiSelect'
+  | 'ApiTreeSelect'
   | 'Checkbox'
   | 'CheckboxGroup'
   | 'DatePicker'
@@ -73,11 +74,29 @@ async function initComponentAdapter() {
       return h(
         ApiSelect,
         {
+          placeholder: $t('ui.placeholder.select'),
           ...props,
           ...attrs,
           component: ElSelectV2,
           loadingSlot: 'loading',
-          visibleEvent: 'onDropdownVisibleChange',
+          visibleEvent: 'onVisibleChange',
+        },
+        slots,
+      );
+    },
+    ApiTreeSelect: (props, { attrs, slots }) => {
+      return h(
+        ApiSelect,
+        {
+          placeholder: $t('ui.placeholder.select'),
+          ...props,
+          ...attrs,
+          component: ElTreeSelect,
+          props: { label: 'label', children: 'children' },
+          nodeKey: 'value',
+          loadingSlot: 'loading',
+          optionsPropName: 'data',
+          visibleEvent: 'onVisibleChange',
         },
         slots,
       );
