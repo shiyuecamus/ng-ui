@@ -174,7 +174,7 @@ async function initComponentAdapter() {
     TreeSelect: withDefaultPlaceholder(NTreeSelect, 'select'),
     Upload: NUpload,
     Cascader: withDefaultPlaceholder(NCascader, 'select'),
-    InputTel: withDefaultPlaceholder(VueTelInput, 'input'),
+    InputTel: withDefaultPlaceholder(VueTelInput as any, 'input'),
     DynamicInput: withDefaultPlaceholder(NDynamicInput, 'input'),
   };
 
