@@ -7,13 +7,10 @@ import type { BaseFormComponentType } from '@vben/common-ui';
 
 import type { Component, SetupContext } from 'vue';
 import { h } from 'vue';
-
-import { ApiSelect, globalShareState, IconPicker } from '@vben/common-ui';
-import { $t } from '@vben/locales';
-
-// @ts-ignore
 import { VueTelInput } from 'vue-tel-input';
-import 'vue-tel-input/vue-tel-input.css';
+
+import { ApiComponent, globalShareState, IconPicker } from '@vben/common-ui';
+import { $t } from '@vben/locales';
 
 import {
   NButton,
@@ -22,6 +19,7 @@ import {
   NCheckboxGroup,
   NDatePicker,
   NDivider,
+  NDynamicInput,
   NInput,
   NInputNumber,
   NRadio,
@@ -33,12 +31,13 @@ import {
   NTimePicker,
   NTreeSelect,
   NUpload,
-  NDynamicInput,
 } from 'naive-ui';
 
 import { message } from '#/adapter/naive';
 
 import 'intl-tel-input/styles';
+
+import 'vue-tel-input/vue-tel-input.css';
 
 const withDefaultPlaceholder = <T extends Component>(
   component: T,
@@ -58,10 +57,10 @@ export type ComponentType =
   | 'CheckboxGroup'
   | 'DatePicker'
   | 'Divider'
+  | 'DynamicInput'
   | 'IconPicker'
   | 'Input'
   | 'InputNumber'
-  | 'DynamicInput'
   | 'InputTel'
   | 'RadioGroup'
   | 'Select'
@@ -80,7 +79,7 @@ async function initComponentAdapter() {
 
     ApiSelect: (props, { attrs, slots }) => {
       return h(
-        ApiSelect,
+        ApiComponent,
         {
           placeholder: $t('ui.placeholder.select'),
           ...props,
@@ -93,7 +92,7 @@ async function initComponentAdapter() {
     },
     ApiTreeSelect: (props, { attrs, slots }) => {
       return h(
-        ApiSelect,
+        ApiComponent,
         {
           placeholder: $t('ui.placeholder.select'),
           ...props,
