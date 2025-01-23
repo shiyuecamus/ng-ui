@@ -1,30 +1,31 @@
 <script lang="ts" setup>
+import type { VbenFormProps } from '@vben/common-ui';
+import type { TenantInfo } from '@vben/types';
+
 import type { VxeGridProps } from '#/adapter/vxe-table';
-import { useVbenVxeGrid } from '#/adapter/vxe-table';
+
+import { Page, useVbenModal } from '@vben/common-ui';
 import { FormOpenType } from '@vben/constants';
-import { Page, useVbenModal, type VbenFormProps } from '@vben/common-ui';
 import { useMessageHandler } from '@vben/hooks';
 import { $t } from '@vben/locales';
 import { CommonStatus, EntityType } from '@vben/types';
+
 import { VbenIcon } from '@vben-core/shadcn-ui';
 
-import { NButton, NPopconfirm, useMessage } from 'naive-ui';
-import { deleteTenant, fetchTenantPage } from '#/api/system';
+import { NButton, NPopconfirm, NSwitch, useMessage } from 'naive-ui';
+
+import { useVbenVxeGrid } from '#/adapter/vxe-table';
+import {
+  deleteTenant,
+  fetchTenantPage,
+  updateTenantStatus,
+} from '#/api/system';
 
 import TenantForm from './form.vue';
 
 const { handleRequest } = useMessageHandler();
 
 const message = useMessage();
-
-interface RowType {
-  id: number | string;
-  createdAt: string;
-  name: string;
-  country: string;
-  state: string;
-  city: string;
-}
 
 const formOptions: VbenFormProps = {
   // 默认展开
@@ -33,7 +34,7 @@ const formOptions: VbenFormProps = {
     {
       component: 'Input',
       fieldName: 'name',
-      label: $t('page.system.tenant.name'),
+      label: $t('common.baseInfo.name'),
       componentProps: {
         clearable: true,
       },
@@ -55,12 +56,12 @@ const formOptions: VbenFormProps = {
         placeholder: $t('ui.placeholder.select'),
       },
       fieldName: 'status',
-      label: $t('page.system.tenant.status'),
+      label: $t('common.status.title'),
     },
     {
       component: 'DatePicker',
       fieldName: 'startTime',
-      label: $t('page.system.tenant.startTime'),
+      label: $t('common.baseInfo.startTime'),
       componentProps: {
         type: 'datetime',
         clearable: true,
@@ -69,7 +70,7 @@ const formOptions: VbenFormProps = {
     {
       component: 'DatePicker',
       fieldName: 'endTime',
-      label: $t('page.system.tenant.endTime'),
+      label: $t('common.baseInfo.endTime'),
       componentProps: {
         type: 'datetime',
         clearable: true,
@@ -82,7 +83,7 @@ const formOptions: VbenFormProps = {
   submitOnEnter: false,
 };
 
-const gridOptions: VxeGridProps<RowType> = {
+const gridOptions: VxeGridProps<TenantInfo> = {
   checkboxConfig: {
     highlight: true,
     labelField: 'name',
@@ -92,6 +93,12 @@ const gridOptions: VxeGridProps<RowType> = {
     { field: 'country', title: $t('common.contactInfo.country') },
     { field: 'state', title: $t('common.contactInfo.state') },
     { field: 'city', title: $t('common.contactInfo.city') },
+    {
+      field: 'status',
+      formatter: 'status',
+      title: $t('common.status.title'),
+      slots: { default: 'status' },
+    },
     {
       field: 'createdAt',
       formatter: 'formatDateTime',
@@ -149,10 +156,10 @@ const handleCreate = () => {
   modalApi.open();
 };
 
-const handleDelete = async (row: RowType) => {
+const handleDelete = async (row: TenantInfo) => {
   await handleRequest(
     () => deleteTenant(row.id),
-    () => {
+    (_) => {
       message.success(
         $t('common.action.deleteSuccessWithName', { name: row.name }),
       );
@@ -163,11 +170,34 @@ const handleDelete = async (row: RowType) => {
   );
   await gridApi.query();
 };
+
+const toggleStatus = async (row: TenantInfo) => {
+  const status =
+    row.status === CommonStatus.ENABLED
+      ? CommonStatus.DISABLED
+      : CommonStatus.ENABLED;
+  await handleRequest(
+    () => updateTenantStatus(row.id, status),
+    async (_) => {
+      message.success($t('common.action.changeStatusSuccess'));
+      await gridApi.query();
+    },
+    (_: any) => {
+      message.error($t('common.action.changeStatusFail'));
+    },
+  );
+};
 </script>
 
 <template>
   <Page auto-content-height>
     <Grid>
+      <template #status="{ row }">
+        <NSwitch
+          :value="row.status === CommonStatus.ENABLED"
+          @update:value="toggleStatus(row)"
+        />
+      </template>
       <template #toolbar-tools>
         <NButton class="mr-2" type="primary" @click="handleCreate">
           <span>{{
@@ -186,7 +216,7 @@ const handleDelete = async (row: RowType) => {
           </template>
           {{
             $t('common.action.deleteConfirm', {
-              entityType: $t(`entity.${EntityType.TENANT}`),
+              entityType: $t(`entity.${EntityType.TENANT.toLowerCase()}`),
               name: row.name,
             })
           }}

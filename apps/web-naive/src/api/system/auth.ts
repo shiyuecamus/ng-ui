@@ -1,8 +1,15 @@
-import { baseRequestClient, requestClient } from '#/api/request';
 import { useAccessStore } from '@vben/stores';
 
+import { baseRequestClient, requestClient } from '#/api/request';
+
 export namespace AuthApi {
-  /** 登录接口参数 */
+  export const base = '/auth';
+  export const token = `${base}/token`;
+  export const refreshToken = `${base}/refreshToken`;
+  export const logout = `${base}/logout`;
+  export const codes = `${base}/codes`;
+
+  /** login params */
   export interface TokenParams {
     password?: string;
     username?: string;
@@ -12,7 +19,7 @@ export namespace AuthApi {
     refresh_token?: string;
   }
 
-  /** 登录接口返回值 */
+  /** login result */
   export interface TokenResult {
     access_token: string;
     refresh_token: string;
@@ -20,30 +27,39 @@ export namespace AuthApi {
 }
 
 /**
- * oauth2登录
+ * oauth2 login
+ * @param params - Login params
+ * @returns Promise with login result
  */
 export async function loginApi(params: AuthApi.TokenParams) {
-  return requestClient.post<AuthApi.TokenResult>('/auth/token', undefined, {
+  return requestClient.post<AuthApi.TokenResult>(AuthApi.token, undefined, {
     params,
   });
 }
 
 /**
- * oauth2刷新token
+ * oauth2 refresh token
+ * @param params - Login params
+ * @returns Promise with login result
  */
 export async function refreshTokenApi(params: AuthApi.TokenParams) {
-  return baseRequestClient.post<AuthApi.TokenResult>('/auth/token', undefined, {
-    params,
-  });
+  return baseRequestClient.post<AuthApi.TokenResult>(
+    AuthApi.refreshToken,
+    undefined,
+    {
+      params,
+    },
+  );
 }
 
 /**
- * 退出登录
+ * logout
+ * @returns Promise with logout result
  */
 export async function logoutApi() {
   const accessStore = useAccessStore();
   return baseRequestClient.post(
-    '/auth/logout',
+    AuthApi.logout,
     {},
     {
       headers: {
@@ -56,8 +72,9 @@ export async function logoutApi() {
 }
 
 /**
- * 获取用户权限码
+ * get current user access codes
+ * @returns Promise with access codes
  */
 export async function getAccessCodesApi() {
-  return requestClient.get<string[]>('/auth/codes');
+  return requestClient.get<string[]>(AuthApi.codes);
 }

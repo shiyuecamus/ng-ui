@@ -1,7 +1,7 @@
 import type { BaseEntity, ContactInfo, StatusInfo } from './base';
 
-/** 租户信息 */
-interface TenantInfo extends BaseEntity, StatusInfo, ContactInfo {
+// TenantInfo interface extends BaseEntity, StatusInfo, and ContactInfo
+interface TenantInfo extends BaseEntity, ContactInfo, StatusInfo {
   /**
    * 名称
    */

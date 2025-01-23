@@ -29,13 +29,21 @@
   "search": "搜索",
   "searchWithName": "搜索{name}",
   "actions": "操作",
+  "download": "下载",
+  "downloadWithName": "下载{name}",
+  "downloadBatch": "批量下载",
+  "downloadBatchWithName": "批量下载{name}",
   "status": {
+    "title": "状态",
     "enabled": "启用",
     "disabled": "禁用"
   },
   "baseInfo": {
     "name": "名称",
+    "code": "编码",
     "desc": "描述",
+    "startTime": "开始时间",
+    "endTime": "结束时间",
     "createdAt": "创建时间",
     "updatedAt": "更新时间",
     "deletedAt": "删除时间"
@@ -76,6 +84,14 @@
     "importSuccess": "导入成功",
     "importFail": "导入失败",
     "importSuccessWithName": "导入成功，名称：{name}",
-    "importFailWithName": "导入失败，名称：{name}"
+    "importFailWithName": "导入失败，名称：{name}",
+    "changeStatusSuccess": "状态变更成功",
+    "changeStatusFail": "状态变更失败",
+    "changeStatusSuccessWithName": "状态变更成功，名称：{name}",
+    "changeStatusFailWithName": "状态变更失败，名称：{name}",
+    "downloadSuccess": "下载成功",
+    "downloadFail": "下载失败",
+    "downloadSuccessWithName": "下载成功，名称：{name}",
+    "downloadFailWithName": "下载失败，名称：{name}"
   }
 }

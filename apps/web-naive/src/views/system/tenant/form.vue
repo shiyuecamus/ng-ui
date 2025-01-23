@@ -1,11 +1,12 @@
 <script lang="ts" setup>
+import { nextTick, ref } from 'vue';
+
+import { useVbenModal } from '@vben/common-ui';
+import { FormOpenType } from '@vben/constants';
 import { $t } from '@vben/locales';
 
 import { useVbenForm, z } from '#/adapter/form';
 import { contactSchema } from '#/shared/schema/form';
-import { useVbenModal } from '@vben/common-ui';
-import { nextTick, ref } from 'vue';
-import { FormOpenType } from '@vben/constants';
 
 defineOptions({ name: 'TenantForm' });
 

@@ -2,9 +2,15 @@ import type { RouteRecordStringComponent } from '@vben/types';
 
 import { requestClient } from '#/api/request';
 
+export namespace MenuApi {
+  export const base = '/menu';
+  export const allTree = `${base}/allTree`;
+}
+
 /**
- * 获取用户所有菜单
+ * get current user all menus
+ * @returns Promise with all menus
  */
 export async function getAllMenusApi() {
-  return requestClient.get<RouteRecordStringComponent[]>('/menu/allTree');
+  return requestClient.get<RouteRecordStringComponent[]>(MenuApi.allTree);
 }

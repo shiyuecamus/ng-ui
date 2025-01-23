@@ -129,6 +129,10 @@
       "path": "packages/effects/request",
     },
     {
+      "name": "@vben/errors",
+      "path": "packages/errors",
+    },
+    {
       "name": "@vben/icons",
       "path": "packages/icons",
     },

@@ -43,8 +43,26 @@
       "title": "Dictionary"
     }
   },
-  "product": {
-    "title": "Product"
+  "thingsModel": {
+    "title": "Things Model",
+    "product": {
+      "title": "Product"
+    },
+    "manufacturer": {
+      "title": "Manufacturer"
+    },
+    "driver": {
+      "title": "Driver",
+      "size": "Size",
+      "type": "Type",
+      "version": "Version",
+      "extType": "Ext Type",
+      "extType-dll": "DLL",
+      "extType-dylib": "DYLIB",
+      "extType-so": "SO",
+      "type-builtin": "Builtin",
+      "type-custom": "Custom"
+    }
   },
   "entity": {
     "title": "Entity",
@@ -55,10 +73,10 @@
       "title": "Asset"
     }
   },
-  "manufacturer": {
-    "title": "Manufacturer"
-  },
-  "operationRecord": {
-    "title": "Operation Record"
+  "audit": {
+    "title": "Audit",
+    "operationRecord": {
+      "title": "Operation Record"
+    }
   }
 }

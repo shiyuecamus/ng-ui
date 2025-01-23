@@ -1,17 +1,15 @@
-﻿<script lang="ts" setup>
+<script lang="ts" setup>
+import type { ExtendedFormApi, VbenFormProps } from '@vben/common-ui';
+
 import type { VxeGridProps } from '#/adapter/vxe-table';
 
-import { nextTick, ref } from 'vue';
+import { ref } from 'vue';
 
-import {
-  type ExtendedFormApi,
-  Page,
-  useVbenModal,
-  type VbenFormProps,
-} from '@vben/common-ui';
+import { Page, useVbenModal } from '@vben/common-ui';
 import { useMessageHandler } from '@vben/hooks';
 import { $t } from '@vben/locales';
 import { CommonStatus, EntityType } from '@vben/types';
+
 import { VbenIcon } from '@vben-core/shadcn-ui';
 
 import { NButton, NPopconfirm, useMessage } from 'naive-ui';
@@ -40,7 +38,7 @@ const formOptions: VbenFormProps = {
     {
       component: 'Input',
       fieldName: 'name',
-      label: $t('page.system.tenant.name'),
+      label: $t('common.baseInfo.name'),
       componentProps: {
         clearable: true,
       },
@@ -62,12 +60,12 @@ const formOptions: VbenFormProps = {
         placeholder: $t('ui.placeholder.select'),
       },
       fieldName: 'status',
-      label: $t('page.system.tenant.status'),
+      label: $t('common.status.title'),
     },
     {
       component: 'DatePicker',
       fieldName: 'startTime',
-      label: $t('page.system.tenant.startTime'),
+      label: $t('common.baseInfo.startTime'),
       componentProps: {
         type: 'datetime',
         clearable: true,
@@ -76,7 +74,7 @@ const formOptions: VbenFormProps = {
     {
       component: 'DatePicker',
       fieldName: 'endTime',
-      label: $t('page.system.tenant.endTime'),
+      label: $t('common.baseInfo.endTime'),
       componentProps: {
         type: 'datetime',
         clearable: true,
@@ -145,7 +143,7 @@ const [Modal, modalApi] = useVbenModal({});
 const handleDelete = async (row: RowType) => {
   await handleRequest(
     () => deleteTenant(row.id),
-    () => {
+    (_) => {
       message.success(
         $t('common.action.deleteSuccessWithName', { name: row.name }),
       );
@@ -184,7 +182,9 @@ const handleSubmit = (record: Record<string, any>) => {
           </template>
           {{
             $t('common.action.deleteConfirm', {
-              entityType: $t(`entity.${EntityType.TENANT}`),
+              entityType: $t(
+                `entity.${EntityType.TENANT_PACKAGE.toLowerCase()}`,
+              ),
               name: row.name,
             })
           }}

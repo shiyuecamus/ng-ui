@@ -30,12 +30,16 @@
   "searchWithName": "Search {name}",
   "actions": "Actions",
   "status": {
+    "title": "Status",
     "enabled": "Enabled",
     "disabled": "Disabled"
   },
   "baseInfo": {
     "name": "Name",
+    "code": "Code",
     "desc": "Desc",
+    "startTime": "Start Time",
+    "endTime": "End Time",
     "createdAt": "Created At",
     "updatedAt": "Updated At",
     "deletedAt": "Deleted At"
@@ -76,6 +80,10 @@
     "importSuccess": "Import Success",
     "importFail": "Import Fail",
     "importSuccessWithName": "Import Success, name: {name}",
-    "importFailWithName": "Import Fail, name: {name}"
+    "importFailWithName": "Import Fail, name: {name}",
+    "downloadSuccess": "Download Success",
+    "downloadFail": "Download Fail",
+    "downloadSuccessWithName": "Download Success, name: {name}",
+    "downloadFailWithName": "Download Fail, name: {name}"
   }
 }

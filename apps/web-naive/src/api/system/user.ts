@@ -2,9 +2,15 @@ import type { UserInfo } from '@vben/types';
 
 import { requestClient } from '#/api/request';
 
+export namespace UserApi {
+  export const base = '/user';
+  export const userinfo = `${base}/userinfo`;
+}
+
 /**
- * 获取用户信息
+ * fetch user info
+ * @returns Promise with user info
  */
 export async function getUserInfoApi() {
-  return requestClient.get<UserInfo>('/user/userinfo');
+  return requestClient.get<UserInfo>(UserApi.userinfo);
 }

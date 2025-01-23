@@ -1,12 +1,12 @@
 export function useMessageHandler() {
   const handleRequest = async <T>(
     requestFn: () => Promise<T>,
-    successCallback?: () => void,
+    successCallback?: (res: T) => void,
     errorCallback?: (error: any) => void,
   ): Promise<null | T> => {
     try {
-      const result = await requestFn();
-      successCallback && successCallback();
+      const result: T = await requestFn();
+      successCallback && successCallback(result);
       return result;
     } catch (error: any) {
       errorCallback && errorCallback(error);

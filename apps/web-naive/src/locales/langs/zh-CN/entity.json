@@ -1,16 +1,17 @@
 {
   "tenant": "租户",
-  "tenantPackage": "租户套餐",
+  "tenant_package": "租户套餐",
   "user": "用户",
   "role": "角色",
   "dept": "部门",
   "menu": "菜单",
-  "oauth2Client": "oauth2客户端",
+  "oauth2_client": "oauth2客户端",
   "device": "设备",
-  "deviceCredentials": "设备凭证",
+  "device_credentials": "设备凭证",
   "manufacturer": "厂商",
   "product": "产品",
-  "operationRecord": "操作日志",
+  "operation_record": "操作日志",
   "dictionary": "字典",
-  "dictionaryDetail": "字典详情"
+  "dictionary_detail": "字典详情",
+  "driver": "驱动"
 }

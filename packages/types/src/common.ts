@@ -9,6 +9,11 @@ interface CommonPageRequest {
   pageSize: number;
 }
 
+interface CommonSortRequest {
+  sortBy: string;
+  sortOrder: 'asc' | 'desc';
+}
+
 interface CommonPageResponse<T> {
   /**
    * 页码
@@ -28,4 +33,4 @@ interface CommonPageResponse<T> {
   list: T[];
 }
 
-export type { CommonPageRequest, CommonPageResponse };
+export type { CommonPageRequest, CommonPageResponse, CommonSortRequest };

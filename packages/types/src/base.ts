@@ -1,3 +1,5 @@
+import { TagColor } from './color';
+
 export enum CommonStatus {
   /**
    * 禁用
@@ -9,63 +11,80 @@ export enum CommonStatus {
   ENABLED = 1,
 }
 
+export const CommonStatusTrans: Map<CommonStatus, string> = new Map([
+  [CommonStatus.DISABLED, 'common.status.disabled'],
+  [CommonStatus.ENABLED, 'common.status.enabled'],
+]);
+
+export const CommonStatusColor: Map<
+  CommonStatus,
+  { borderColor: string; color: string; textColor: string }
+> = new Map([
+  [CommonStatus.DISABLED, TagColor.Magenta],
+  [CommonStatus.ENABLED, TagColor.Cyan],
+]);
+
 export enum EntityType {
   /**
    * 部门
    */
-  DEPT = 'dept',
+  DEPT = 'DEPT',
   /**
    * 设备
    */
-  DEVICE = 'device',
+  DEVICE = 'DEVICE',
   /**
    * 设备凭证
    */
-  DEVICE_CREDENTIALS = 'deviceCredentials',
+  DEVICE_CREDENTIALS = 'DEVICE_CREDENTIALS',
   /**
    * 字典
    */
-  DICTIONARY = 'dictionary',
+  DICTIONARY = 'DICTIONARY',
   /**
    * 字典详情
    */
-  DICTIONARY_DETAIL = 'dictionary_detail',
+  DICTIONARY_DETAIL = 'DICTIONARY_DETAIL',
+  /**
+   * 驱动
+   */
+  DRIVER = 'DRIVER',
   /**
    * 厂商
    */
-  MANUFACTURER = 'manufacturer',
+  MANUFACTURER = 'MANUFACTURER',
   /**
    * 菜单
    */
-  MENU = 'menu',
+  MENU = 'MENU',
   /**
    * oauth客户端
    */
-  OAUTH2_CLIENT = 'oauth2Client',
+  OAUTH2_CLIENT = 'OAUTH2_CLIENT',
   /**
    * 操作日志
    */
-  OPERATION_RECORD = 'operationRecord',
+  OPERATION_RECORD = 'OPERATION_RECORD',
   /**
    * 产品
    */
-  PRODUCT = 'product',
+  PRODUCT = 'PRODUCT',
   /**
    * 角色
    */
-  ROLE = 'role',
+  ROLE = 'ROLE',
   /**
    * 菜单
    */
-  TENANT = 'tenant',
+  TENANT = 'TENANT',
   /**
    * 租户套餐
    */
-  TENANT_PACKAGE = 'tenantPackage',
+  TENANT_PACKAGE = 'TENANT_PACKAGE',
   /**
    * 用户
    */
-  USER = 'user',
+  USER = 'USER',
 }
 
 interface BaseEntity {
